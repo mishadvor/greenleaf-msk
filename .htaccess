@@ -1,0 +1,13 @@
+
+Options +ExecCGI
+
+AddHandler wsgi-script .py
+
+
+# Отдаём статику напрямую из папки staticfiles
+RewriteRule ^static/(.*)$ /staticfiles/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^(.*)$ /wsgi_main.py/$1 [QSA,PT]
+
